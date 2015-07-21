@@ -16,24 +16,27 @@ function multiplyByFive(num) {
 var button = document.getElementById("submitButton");
 var inputEl = document.getElementById("userNum");
 var result = document.getElementById("result");
-var html = "<h1>";
+
 
 
 // - When the button is clicked, 
 // 	call a JavaScript function that checks 
 // 	if the user has entered in a value in the input field
 button.onclick = function () {
+	var html = "<h1>";
 	console.log("input value: " + inputEl.value);
 	if (inputEl.value === "") {
 		alert("Youn need to enter a value in the input field");
 	} else if (parseInt(inputEl.value) > 10000) {
+		html += "Your number divided by 10 is: ";
 		html += divideByTen(parseInt(inputEl.value));
-		html += "</h1>";
 	} else {
+		html += "Your number multiplied by 5 is: ";
 		html += multiplyByFive(parseInt(inputEl.value));
-		html += "</h1>";
 	}
+	html += "</h1>";
 	result.innerHTML = html;
+	inputEl.value = "";
 }
 // - If there is no value, 
 // 	put an appropriate message in an alert box telling the user to enter something
