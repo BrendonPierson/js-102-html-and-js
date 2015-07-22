@@ -13,31 +13,45 @@ function multiplyByFive(num) {
 	return (num * 5);
 }
 
-var button = document.getElementById("submitButton");
-var inputEl = document.getElementById("userNum");
-var result = document.getElementById("result");
+// var button = document.getElementById("submitButton");
+// var inputEl = document.getElementById("userNum");
+// var result = document.getElementById("result");
 
+var $button = $("#submitButton");
+var $inputEl = $("#userNum");
+var $result = $("#result");
 
+$inputEl.keyup(function(){
+	if(isNaN($inputEl.val())) {
+		$inputEl.css("backgroundColor", "yellow");
+		$("#warning").html("<p>Please enter numbers only</p>");
+	} else {
+		$inputEl.css("backgroundColor", "white");
+		$("#warning").html("");
+	}
+})
 
 // - When the button is clicked, 
 // 	call a JavaScript function that checks 
 // 	if the user has entered in a value in the input field
-button.onclick = function () {
+$button.click(function () {
 	var html = "<h1>";
-	console.log("input value: " + inputEl.value);
-	if (inputEl.value === "") {
+	console.log("input value: " + $inputEl.val());
+	if ($inputEl.val() === "") {
 		alert("Youn need to enter a value in the input field");
-	} else if (parseInt(inputEl.value) > 10000) {
+	} else if (parseInt($inputEl.val()) > 10000) {
 		html += "Your number divided by 10 is: ";
-		html += divideByTen(parseInt(inputEl.value));
+		html += divideByTen(parseInt($inputEl.val()));
 	} else {
 		html += "Your number multiplied by 5 is: ";
-		html += multiplyByFive(parseInt(inputEl.value));
+		html += multiplyByFive(parseInt($inputEl.val()));
 	}
 	html += "</h1>";
-	result.innerHTML = html;
-	inputEl.value = "";
-}
+	$result.html(html);
+	$inputEl.val('');
+});
+
+
 // - If there is no value, 
 // 	put an appropriate message in an alert box telling the user to enter something
 
